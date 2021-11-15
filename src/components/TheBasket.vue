@@ -2,8 +2,8 @@
   <div>
     <div class="cart-title">Корзина</div>
     <div class="cart-operations">
-      <input type="checkbox">
-      <span>Выбрать все (не работает)</span>
+      <input type="checkbox" @change="changeAllCartDeleteStatus" />
+      <span class="cart-oprations__select-all">Выбрать все</span>
       <span class="cart-oprations__delete-selected" @click="deleteSelected">Удалить выбранное</span>
       <span class="cart-oprations__delete-selected" @click="$emit('show-basket')">Закрыть корзину</span>
     </div>
@@ -27,8 +27,15 @@ export default {
   methods: {
     deleteSelected() {
       this.$store.commit("deleteSelected");
-    }
-  }
+    },
+    changeAllCartDeleteStatus(event) {
+      if (event.target.checked) {
+        this.$store.commit("selectAllbasket");
+      } else {
+        this.$store.commit("deselectAllbasket");
+      }
+    },
+  },
 };
 </script>
 
@@ -40,6 +47,10 @@ export default {
 
 .cart-operations {
   font-size: 14px;
+  margin-left: 20px;
+}
+
+.cart-oprations__select-all {
   margin-left: 20px;
 }
 

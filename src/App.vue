@@ -3,10 +3,16 @@
     <h2 class="app__title">Магазинчик всякой фигни</h2>
     <div class="container">
       <div>
-        <the-basket v-if="showBasket" v-on:show-basket="showBasket = !showBasket"/>
+        <the-basket
+          v-if="showBasket"
+          v-on:show-basket="showBasket = !showBasket"
+        />
         <the-cards-list v-if="!showBasket" />
       </div>
-      <the-cart-vidget v-on:show-basket="showBasket = !showBasket" :showBasketButton="!showBasket"/>
+      <the-cart-vidget
+        v-on:show-basket="showBasket = !showBasket"
+        :showBasketButton="!showBasket"
+      />
     </div>
   </div>
 </template>
@@ -43,9 +49,10 @@ export default {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
-  border: 3px solid black;
+  border: 1px solid gray;
+  border-radius: 5px;
   display: grid;
   grid-template-columns: 80% 20%;
 }

@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="basket-item__container">
-      <input type="checkbox" :value="product.uid" @change="changeDeleteState"/>
+      <input
+        type="checkbox"
+        :value="product.uid"
+        @change="changeDeleteState"
+        :checked="isBasketItemFlagged(product.uid)"
+      />
       <img :src="product.image" alt="product image" class="basket-item__img" />
       <div class="basket-item__second-block">
         <div class="basket-item__name">
@@ -41,7 +46,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 export default {
   name: "BasketItem",
   props: {
@@ -53,6 +58,9 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  computed: {
+    ...mapGetters(["isBasketItemFlagged"]),
   },
   methods: {
     ...mapMutations(["incQuantity", "decQuantity", "deleteBascketItem"]),

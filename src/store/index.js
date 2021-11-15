@@ -18,7 +18,7 @@ export default new Vuex.Store({
       return state.cardsData;
     },
     getOneCard: (state) => (uid) => {
-      let res = state.cardsData.find((value) => value.uid == uid);
+      let res = state.cardsData.find((value) => value.uid === uid);
       return res;
     },
     // геттеры корзины
@@ -33,6 +33,10 @@ export default new Vuex.Store({
         (acc, item) => (acc = acc + item.quantity * item.price),
         0
       );
+    },
+    isBasketItemFlagged: (state) => (uid) => {
+      let item = state.cartData.find((itm) => itm.uid === uid);
+      return item.deleteFlag;
     },
   },
   mutations: {
@@ -104,6 +108,12 @@ export default new Vuex.Store({
           }
         }
       }
+    },
+    selectAllbasket: (state) => {
+      state.cartData.map((item) => (item.deleteFlag = true));
+    },
+    deselectAllbasket: (state) => {
+      state.cartData.map((item) => (item.deleteFlag = false));
     },
   },
   actions: {

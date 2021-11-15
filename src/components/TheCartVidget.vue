@@ -56,6 +56,7 @@ export default {
 .cart__container {
   /* border: 1px solid blue; */
   padding-left: 12px;
+  padding-right: 4px;
 }
 
 .cart__holder {
