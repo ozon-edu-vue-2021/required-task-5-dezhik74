@@ -3,11 +3,15 @@
     <h2 class="app__title">Магазинчик всякой фигни</h2>
     <div class="container">
       <div>
+        <div class="show-favorite-btn" v-if="!showBasket">
+          <input type="checkbox" v-model="showFavorite" />
+          Показывать избранные
+        </div>
         <the-basket
           v-if="showBasket"
           v-on:show-basket="showBasket = !showBasket"
         />
-        <the-cards-list v-if="!showBasket" />
+        <the-cards-list v-if="!showBasket" :showFavorite="showFavorite" />
       </div>
       <the-cart-vidget
         v-on:show-basket="showBasket = !showBasket"
@@ -31,6 +35,7 @@ export default {
   data() {
     return {
       showBasket: false,
+      showFavorite: false,
     };
   },
 };

@@ -16,7 +16,11 @@
           {{ product.measurement }}
         </div>
         <div class="basket-item__fav-delete">
-          <span class="basket-item__favorite">в избранное</span>
+          <span
+            @click="putItemToFavorite(product.uid)"
+            class="basket-item__favorite"
+            >в избранное</span
+          >
           <span
             @click="deleteBascketItem(product.uid)"
             class="basket-item__delete"
@@ -54,7 +58,7 @@ export default {
     ...mapGetters(["isBasketItemFlagged"]),
   },
   methods: {
-    ...mapMutations(["deleteBascketItem"]),
+    ...mapMutations(["deleteBascketItem", "putItemToFavorite"]),
     changeDeleteState(event) {
       console.log(event.target.checked);
       this.$store.commit("setDeleteStatus", {

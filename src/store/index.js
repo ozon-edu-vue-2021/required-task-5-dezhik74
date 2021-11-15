@@ -21,6 +21,9 @@ export default new Vuex.Store({
       let res = state.cardsData.find((value) => value.uid === uid);
       return res;
     },
+    getFilteredCardsData: (state) => {
+      return state.cardsData.filter((item) => item.favorite);
+    },
     // геттеры корзины
     getCartNumberOfGoods: (state) => {
       return state.cartData.length;
@@ -53,7 +56,6 @@ export default new Vuex.Store({
       state.cardsData = payload;
       // Устанавливаем случайные цены и ссылки на картинки и favorite = false
       state.images = getListofImages();
-      console.log(state.images);
       state.cardsData.forEach((card) => {
         Vue.set(card, "price", Math.floor(Math.random() * 200));
         Vue.set(
@@ -63,6 +65,14 @@ export default new Vuex.Store({
         );
         Vue.set(card, "favorite", false);
       });
+    },
+    putItemToFavorite: (state, uid) => {
+      let card = state.cardsData.find((value) => value.uid === uid);
+      card.favorite = true;
+    },
+    changeFavoriteStatus: (state, uid) => {
+      let card = state.cardsData.find((value) => value.uid === uid);
+      card.favorite = !card.favorite;
     },
     // мутации корзины
     addToCart: (state, uid) => {

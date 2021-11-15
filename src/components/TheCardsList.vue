@@ -2,7 +2,7 @@
   <div>
     <ul class="list__container">
       <cards-list-item
-        v-for="card in getfullCardsData"
+        v-for="card in getCardsData"
         :key="card.uid"
         :product="card"
       />
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import CardsListItem from "./CardsListItem.vue";
 
 export default {
@@ -19,8 +18,18 @@ export default {
   components: {
     CardsListItem,
   },
+  props: {
+    showFavorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
-    ...mapGetters(["getfullCardsData"]),
+    getCardsData: function () {
+      return this.showFavorite
+        ? this.$store.getters.getFilteredCardsData
+        : this.$store.getters.getfullCardsData;
+    },
   },
 };
 </script>

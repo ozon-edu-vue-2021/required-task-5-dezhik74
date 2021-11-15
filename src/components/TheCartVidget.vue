@@ -59,16 +59,15 @@ export default {
 
 <style scoped>
 .cart__container {
-  /* border: 1px solid blue; */
+  position: sticky;
+  top: 0;
+  max-height: 300px;
+  margin-top: 20px;
   padding-left: 12px;
   padding-right: 4px;
 }
 
 .cart__holder {
-  position: sticky;
-  top: 0;
-  max-height: 300px;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   font-size: 14px;

@@ -2,10 +2,18 @@
   <li class="card__container">
     <img :src="product.image" alt="картинка" class="card__img" />
     <div class="card__title">{{ product.dish }}</div>
-    <div class="card__price">{{ product.price }} руб.</div>
+    <div class="card__price_heart">
+      <div class="card__price">{{ product.price }} руб.</div>
+      <img
+        @click="changeFavoriteStatus(product.uid)"
+        :src="getHeartImage"
+        alt=""
+        class="card__heart"
+      />
+    </div>
     <div class="card__desc">{{ product.description }}</div>
     <div class="card__butt-chooser">
-      <button @click="onClick" class="card__button">В корзину</button>
+      <button @click="addToCart" class="card__button">В корзину</button>
       <quantity-chooser
         v-if="isProductInBasket(product.uid)"
         :productUID="product.uid"
@@ -16,8 +24,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import QuantityChooser from "./QuantityChooser.vue";
+import whiteHeart from "../assets/icons/white_heart.png";
+import blackHeart from "../assets/icons/black_heart.png";
 
 export default {
   name: "CardsListItem",
@@ -32,9 +42,13 @@ export default {
   },
   computed: {
     ...mapGetters(["isProductInBasket"]),
+    getHeartImage: function () {
+      return this.product.favorite ? blackHeart : whiteHeart;
+    },
   },
   methods: {
-    onClick() {
+    ...mapMutations(["changeFavoriteStatus"]),
+    addToCart() {
       this.$store.commit("addToCart", this.product.uid);
     },
   },
@@ -60,9 +74,22 @@ export default {
   margin-top: 12px;
 }
 
+.card__price_heart {
+  display: flex;
+  width: 100%;
+}
+
 .card__price {
   margin-top: 12px;
   font-weight: 600;
+}
+
+.card__heart {
+  width: 20px;
+  height: 20px;
+  transform: translateY(8px);
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .card__desc {
