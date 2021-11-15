@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DATA_URL = "https://random-data-api.com/api/food/random_food?size=30"
+const DATA_URL = "https://random-data-api.com/api/food/random_food?size=30";
 
 export async function loadData() {
   try {
@@ -12,4 +12,3 @@ export async function loadData() {
     return null;
   }
 }
-

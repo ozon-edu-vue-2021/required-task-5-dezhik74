@@ -31,6 +31,5 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   column-gap: 8px;
   row-gap: 8px;
-
 }
 </style>

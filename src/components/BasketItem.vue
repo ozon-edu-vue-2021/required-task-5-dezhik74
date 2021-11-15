@@ -25,21 +25,7 @@
         </div>
       </div>
       <div class="basket-item__price">{{ product.price }} руб.</div>
-      <div class="basket-item__qtty">
-        <button
-          @click="decQuantity(product.uid)"
-          class="basket-item__qtty-button"
-        >
-          -
-        </button>
-        {{ basketItemData.quantity }}
-        <button
-          @click="incQuantity(product.uid)"
-          class="basket-item__qtty-button"
-        >
-          +
-        </button>
-      </div>
+      <quantity-chooser :productUID="product.uid" />
     </div>
     <hr />
   </div>
@@ -47,8 +33,13 @@
 
 <script>
 import { mapMutations, mapGetters } from "vuex";
+import QuantityChooser from "./QuantityChooser.vue";
+
 export default {
   name: "BasketItem",
+  components: {
+    QuantityChooser,
+  },
   props: {
     product: {
       type: Object,
@@ -63,7 +54,7 @@ export default {
     ...mapGetters(["isBasketItemFlagged"]),
   },
   methods: {
-    ...mapMutations(["incQuantity", "decQuantity", "deleteBascketItem"]),
+    ...mapMutations(["deleteBascketItem"]),
     changeDeleteState(event) {
       console.log(event.target.checked);
       this.$store.commit("setDeleteStatus", {
@@ -125,12 +116,5 @@ export default {
 
 .basket-item__price {
   font-weight: 700;
-}
-
-.basket-item__qtty-button {
-  background-color: white;
-  border-radius: 50%;
-  border: 1px solid darkgray;
-  cursor: pointer;
 }
 </style>

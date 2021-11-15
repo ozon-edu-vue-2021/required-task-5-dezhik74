@@ -4,8 +4,14 @@
     <div class="cart-operations">
       <input type="checkbox" @change="changeAllCartDeleteStatus" />
       <span class="cart-oprations__select-all">Выбрать все</span>
-      <span class="cart-oprations__delete-selected" @click="deleteSelected">Удалить выбранное</span>
-      <span class="cart-oprations__delete-selected" @click="$emit('show-basket')">Закрыть корзину</span>
+      <span class="cart-oprations__delete-selected" @click="deleteSelected"
+        >Удалить выбранное</span
+      >
+      <span
+        class="cart-oprations__delete-selected"
+        @click="$emit('show-basket')"
+        >Закрыть корзину</span
+      >
     </div>
     <hr />
     <div class="cart-item-list" v-for="item in getFullCart" :key="item.uid">
@@ -40,7 +46,7 @@ export default {
 </script>
 
 <style scoped>
-.cart-title{
+.cart-title {
   font-weight: 700;
   margin: 20px 0 20px 20px;
 }

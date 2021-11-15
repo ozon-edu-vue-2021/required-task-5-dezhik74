@@ -4,18 +4,34 @@
     <div class="card__title">{{ product.dish }}</div>
     <div class="card__price">{{ product.price }} руб.</div>
     <div class="card__desc">{{ product.description }}</div>
-    <button @click="onClick" class="card__button">В корзину</button>
+    <div class="card__butt-chooser">
+      <button @click="onClick" class="card__button">В корзину</button>
+      <quantity-chooser
+        v-if="isProductInBasket(product.uid)"
+        :productUID="product.uid"
+        class="card__qtty"
+      />
+    </div>
   </li>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import QuantityChooser from "./QuantityChooser.vue";
+
 export default {
   name: "CardsListItem",
+  components: {
+    QuantityChooser,
+  },
   props: {
     product: {
       type: Object,
       default: () => {},
     },
+  },
+  computed: {
+    ...mapGetters(["isProductInBasket"]),
   },
   methods: {
     onClick() {
@@ -54,16 +70,24 @@ export default {
   font-size: 14px;
   margin-bottom: 4px;
 }
+
+.card__butt-chooser {
+  margin-top: auto;
+  display: flex;
+  width: 100%;
+}
+
+.card__qtty {
+  margin-left: auto;
+}
 </style>
 
 <style>
 .card__button {
-  margin-top: auto;
   background-color: gray;
   font-weight: 700;
   color: aliceblue;
   border-radius: 4px;
   cursor: pointer;
 }
-
 </style>

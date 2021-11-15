@@ -38,12 +38,20 @@ export default new Vuex.Store({
       let item = state.cartData.find((itm) => itm.uid === uid);
       return item.deleteFlag;
     },
+    getBasketItemQuantity: (state) => (uid) => {
+      let item = state.cartData.find((itm) => itm.uid === uid);
+      return item?.quantity;
+    },
+    isProductInBasket: (state) => (uid) => {
+      let item = state.cartData.find((itm) => itm.uid === uid);
+      return !(item === undefined);
+    },
   },
   mutations: {
     // мутации списка товаров
     setCardsData: (state, payload) => {
       state.cardsData = payload;
-      // Устанавливаем случайные цены и ссылки на картинки
+      // Устанавливаем случайные цены и ссылки на картинки и favorite = false
       state.images = getListofImages();
       console.log(state.images);
       state.cardsData.forEach((card) => {
@@ -53,6 +61,7 @@ export default new Vuex.Store({
           "image",
           state.images[Math.floor(Math.random() * state.images.length)]
         );
+        Vue.set(card, "favorite", false);
       });
     },
     // мутации корзины

@@ -35,5 +35,4 @@ export function getListofImages() {
   ];
   names.map((itm) => res.push(require(`../assets/images/${itm}`)));
   return res;
-
 }

@@ -7,7 +7,7 @@
           <span>Товары ({{ getCartNumberOfGoods }})</span>
           <span>{{ getCartSumma }} руб.</span>
         </div>
-        <hr/>
+        <hr />
         <div class="card__goods-string">
           <span>Итого</span>
           <span>{{ getCartSumma }} руб.</span>
@@ -16,14 +16,19 @@
           <div @click="clearCart" class="card__button cart__button">
             Очистить корзину
           </div>
-          <div v-if="showBasketButton" @click="$emit('show-basket')" class="card__button cart__button">Заглянуть в корзину</div>
+          <div
+            v-if="showBasketButton"
+            @click="$emit('show-basket')"
+            class="card__button cart__button"
+          >
+            Заглянуть в корзину
+          </div>
           <div @click="makeOrder" class="card__button cart__button">
             Оформить заказ
           </div>
         </div>
       </div>
       <div v-else>Корзина пуста</div>
-
     </div>
   </div>
 </template>
@@ -47,7 +52,7 @@ export default {
     makeOrder() {
       const order = this.$store.getters.getFullCart;
       alert(JSON.stringify(order));
-    }
+    },
   },
 };
 </script>
