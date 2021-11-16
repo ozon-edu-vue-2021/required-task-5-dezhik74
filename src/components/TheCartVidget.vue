@@ -16,13 +16,9 @@
           <div @click="clearCart" class="card__button cart__button">
             Очистить корзину
           </div>
-          <div
-            v-if="showBasketButton"
-            @click="$emit('show-basket')"
-            class="card__button cart__button"
-          >
+          <router-link class="card__button cart__button" to="/basket">
             Заглянуть в корзину
-          </div>
+          </router-link>
           <div @click="makeOrder" class="card__button cart__button">
             Оформить заказ
           </div>
@@ -62,7 +58,6 @@ export default {
   position: sticky;
   top: 0;
   max-height: 300px;
-  margin-top: 20px;
   padding-left: 12px;
   padding-right: 4px;
 }
@@ -100,5 +95,6 @@ export default {
   margin-bottom: 20px;
   text-align: center;
   padding-top: 10px;
+  text-decoration: none;
 }
 </style>

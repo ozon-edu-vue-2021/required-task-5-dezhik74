@@ -7,14 +7,22 @@
       <span class="cart-oprations__delete-selected" @click="deleteSelected"
         >Удалить выбранное</span
       >
-      <span
+
+      <router-link class="cart-oprations__delete-selected" to="/">
+        Закрыть корзину
+      </router-link>
+
+      <!-- <span
         class="cart-oprations__delete-selected"
         @click="$emit('show-basket')"
         >Закрыть корзину</span
-      >
+      > -->
     </div>
     <hr />
-    <div class="cart-item-list" v-for="item in getFullCart" :key="item.uid">
+    <div
+      v-for="item in getFullCart" 
+      :key="item.uid"
+      class="cart-item-list">
       <basket-item :product="getOneCard(item.uid)" :basketItemData="item" />
     </div>
   </div>
@@ -22,7 +30,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import BasketItem from "./BasketItem.vue";
+import BasketItem from "../components/BasketItem.vue";
 
 export default {
   components: { BasketItem },
@@ -64,5 +72,6 @@ export default {
   margin-left: 20px;
   color: blue;
   cursor: pointer;
+  text-decoration: none;
 }
 </style>

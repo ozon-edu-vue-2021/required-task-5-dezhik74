@@ -1,13 +1,15 @@
 <template>
   <li class="card__container">
-    <img :src="product.image" alt="картинка" class="card__img" />
+    <router-link :to="`/product/${product.uid}`">
+      <img :src="product.image" alt="картинка" class="card__img" />
+    </router-link>
     <div class="card__title">{{ product.dish }}</div>
     <div class="card__price_heart">
       <div class="card__price">{{ product.price }} руб.</div>
       <img
         @click="changeFavoriteStatus(product.uid)"
         :src="getHeartImage"
-        alt=""
+        alt="heart"
         class="card__heart"
       />
     </div>

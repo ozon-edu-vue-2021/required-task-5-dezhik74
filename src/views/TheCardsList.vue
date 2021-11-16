@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CardsListItem from "./CardsListItem.vue";
+import CardsListItem from "../components/CardsListItem.vue";
 
 export default {
   name: "TheCardsList",

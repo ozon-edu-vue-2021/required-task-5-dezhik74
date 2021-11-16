@@ -60,7 +60,6 @@ export default {
   methods: {
     ...mapMutations(["deleteBascketItem", "putItemToFavorite"]),
     changeDeleteState(event) {
-      console.log(event.target.checked);
       this.$store.commit("setDeleteStatus", {
         uid: this.product.uid,
         flag: event.target.checked,
