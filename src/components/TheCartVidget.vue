@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
-  name: "TheCartVidget",
+  name: 'TheCartVidget',
   props: {
     showBasketButton: {
       type: Boolean,
@@ -41,10 +41,10 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getCartNumberOfGoods", "getCartSumma"]),
+    ...mapGetters(['getCartNumberOfGoods', 'getCartSumma']),
   },
   methods: {
-    ...mapMutations(["clearCart"]),
+    ...mapMutations(['clearCart']),
     makeOrder() {
       const order = this.$store.getters.getFullCart;
       alert(JSON.stringify(order));

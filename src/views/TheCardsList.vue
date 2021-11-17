@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import CardsListItem from "../components/CardsListItem.vue";
+import CardsListItem from '../components/CardsListItem.vue';
 
 export default {
-  name: "TheCardsList",
+  name: 'TheCardsList',
   components: {
     CardsListItem,
   },
@@ -28,7 +28,7 @@ export default {
     getCardsData: function () {
       return this.showFavorite
         ? this.$store.getters.getFilteredCardsData
-        : this.$store.getters.getfullCardsData;
+        : this.$store.state.cardsData;
     },
   },
 };

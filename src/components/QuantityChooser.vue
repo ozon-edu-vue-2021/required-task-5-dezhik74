@@ -7,20 +7,20 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations } from 'vuex';
 export default {
-  name: "QuantityChooser",
+  name: 'QuantityChooser',
   props: {
     productUID: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   computed: {
-    ...mapGetters(["getBasketItemQuantity"]),
+    ...mapGetters(['getBasketItemQuantity']),
   },
   methods: {
-    ...mapMutations(["incQuantity", "decQuantity"]),
+    ...mapMutations(['incQuantity', 'decQuantity']),
   },
 };
 </script>

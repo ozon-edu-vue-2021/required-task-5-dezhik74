@@ -1,8 +1,8 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import { loadData } from "../utils/transport";
-import { getListofImages } from "../utils/images";
+import { loadData } from '../utils/transport';
+import { getListofImages } from '../utils/images';
 
 Vue.use(Vuex);
 
@@ -14,9 +14,6 @@ export default new Vuex.Store({
   }),
   getters: {
     // геттеры списка товаров
-    getfullCardsData: (state) => {
-      return state.cardsData;
-    },
     getOneCard: (state) => (uid) => {
       let res = state.cardsData.find((value) => value.uid === uid);
       return res;
@@ -57,13 +54,13 @@ export default new Vuex.Store({
       // Устанавливаем случайные цены и ссылки на картинки и favorite = false
       state.images = getListofImages();
       state.cardsData.forEach((card) => {
-        Vue.set(card, "price", Math.floor(Math.random() * 200));
+        Vue.set(card, 'price', Math.floor(Math.random() * 200));
         Vue.set(
           card,
-          "image",
+          'image',
           state.images[Math.floor(Math.random() * state.images.length)]
         );
-        Vue.set(card, "favorite", false);
+        Vue.set(card, 'favorite', false);
       });
     },
     putItemToFavorite: (state, uid) => {
@@ -138,7 +135,7 @@ export default new Vuex.Store({
   actions: {
     // акции списка товаров
     setCardsData: (context) => {
-      loadData().then((value) => context.commit("setCardsData", value.data));
+      loadData().then((value) => context.commit('setCardsData', value.data));
     },
   },
 });

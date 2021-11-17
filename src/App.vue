@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import TheCartVidget from "./components/TheCartVidget.vue";
-import TheNavBar from "./components/TheNavBar.vue"
+import TheCartVidget from './components/TheCartVidget.vue';
+import TheNavBar from './components/TheNavBar.vue';
 
 export default {
-  name: "App",
-  components: { TheCartVidget, TheNavBar, },
+  name: 'App',
+  components: { TheCartVidget, TheNavBar },
   created() {
-    this.$store.dispatch("setCardsData");
+    this.$store.dispatch('setCardsData');
   },
   data() {
     return {

@@ -11,42 +11,33 @@
       <router-link class="cart-oprations__delete-selected" to="/">
         Закрыть корзину
       </router-link>
-
-      <!-- <span
-        class="cart-oprations__delete-selected"
-        @click="$emit('show-basket')"
-        >Закрыть корзину</span
-      > -->
     </div>
     <hr />
-    <div
-      v-for="item in getFullCart" 
-      :key="item.uid"
-      class="cart-item-list">
+    <div v-for="item in getFullCart" :key="item.uid" class="cart-item-list">
       <basket-item :product="getOneCard(item.uid)" :basketItemData="item" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import BasketItem from "../components/BasketItem.vue";
+import { mapGetters } from 'vuex';
+import BasketItem from '../components/BasketItem.vue';
 
 export default {
   components: { BasketItem },
-  name: "TheBasket",
+  name: 'TheBasket',
   computed: {
-    ...mapGetters(["getFullCart", "getOneCard"]),
+    ...mapGetters(['getFullCart', 'getOneCard']),
   },
   methods: {
     deleteSelected() {
-      this.$store.commit("deleteSelected");
+      this.$store.commit('deleteSelected');
     },
     changeAllCartDeleteStatus(event) {
       if (event.target.checked) {
-        this.$store.commit("selectAllbasket");
+        this.$store.commit('selectAllbasket');
       } else {
-        this.$store.commit("deselectAllbasket");
+        this.$store.commit('deselectAllbasket');
       }
     },
   },

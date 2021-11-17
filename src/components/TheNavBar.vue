@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "TheNavBar",
+  name: 'TheNavBar',
 };
 </script>
 
@@ -24,5 +24,11 @@ export default {
 
 .navbar-item {
   margin-left: 20px;
+  text-decoration: none;
+}
+
+.router-link-exact-active {
+  color: gray;
+  background-color: aliceblue;
 }
 </style>

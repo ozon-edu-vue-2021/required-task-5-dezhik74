@@ -7,7 +7,13 @@
         @change="changeDeleteState"
         :checked="isBasketItemFlagged(product.uid)"
       />
-      <img :src="product.image" alt="product image" class="basket-item__img" />
+      <router-link :to="`/product/${product.uid}`">
+        <img
+          :src="product.image"
+          alt="product image"
+          class="basket-item__img"
+        />
+      </router-link>
       <div class="basket-item__second-block">
         <div class="basket-item__name">
           {{ product.dish }}
@@ -36,11 +42,11 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
-import QuantityChooser from "./QuantityChooser.vue";
+import { mapMutations, mapGetters } from 'vuex';
+import QuantityChooser from './QuantityChooser.vue';
 
 export default {
-  name: "BasketItem",
+  name: 'BasketItem',
   components: {
     QuantityChooser,
   },
@@ -55,12 +61,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["isBasketItemFlagged"]),
+    ...mapGetters(['isBasketItemFlagged']),
   },
   methods: {
-    ...mapMutations(["deleteBascketItem", "putItemToFavorite"]),
+    ...mapMutations(['deleteBascketItem', 'putItemToFavorite']),
     changeDeleteState(event) {
-      this.$store.commit("setDeleteStatus", {
+      this.$store.commit('setDeleteStatus', {
         uid: this.product.uid,
         flag: event.target.checked,
       });
